@@ -1,0 +1,56 @@
+
+
+
+{{#paper-sidenav-container}}
+
+  {{#paper-sidenav
+  class="md-whiteframe-z2"
+  name="left"
+  open=sideBarOpen
+  onToggle=(action (mut sideBarOpen))
+  }}
+    {{#paper-toolbar as |toolbar|}}
+      {{#paper-toolbar-tools}}Menu{{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-content}}
+      {{#paper-menu-item}}
+        {{#paper-button isActive=(is-active currentRoute 'index') click=(transition-to 'index')}}
+            Index
+        {{/paper-button}}
+      {{/paper-menu-item}}
+      {{#paper-menu-item}}
+          {{#paper-button click=(transition-to 'items')}}
+              Items
+          {{/paper-button}}
+      {{/paper-menu-item}}
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  {{#paper-card-content class="flex"}}
+
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        {{#paper-sidenav-toggle name="left" as |toggleAction|}}
+          {{#paper-button class="hide-gt-sm" iconButton=true onClick=(action toggleAction)}}
+            {{paper-icon "menu"}}
+          {{/paper-button}}
+        {{/paper-sidenav-toggle}}
+
+        <h2>
+            Inventory
+        </h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true}}
+          {{paper-icon "favorite"}}
+        {{/paper-button}}
+        {{#paper-button iconButton=true}}
+          {{paper-icon "more_vert"}}
+        {{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+      <div class="layout-fill layout-align-start-center layout-column">
+         {{outlet}}
+      </div>
+  {{/paper-card-content}}
+{{/paper-sidenav-container}}
